@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>All Hotels</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+</head>
+<body>
+<p th:text="${deleted != null} ? ${deleted}"></p>
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="hotel : ${hotels}">
+        <td th:text="${hotel.id}"></td>
+        <td th:text="${hotel.name}"></td>
+        <td>
+            <a th:href="@{/edit/{id}(id=${hotel.id})}" class="btn btn-primary">
+                <i class="fas fa-user-edit ml-2"></i>
+            </a>
+        </td>
+        <td>
+            <a th:href="@{/delete/{id}/pageNumber/pageSize/sortBy (id=${hotel.id}, pageNumber=${pageNumber}, pageSize=${pageSize}, sortBy=${sortBy})}" class="btn btn-primary">
+                <i class="fas fa-user-times ml-2"></i>
+            </a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+</body>
+
+</html>
